@@ -57,6 +57,20 @@ function changeBack(){
     document.getElementById("edited").innerHTML = "";
 }
 
+
+// Welcoming
+window.addEventListener("load", (e) => {
+    const text_welcome = "Welcome to My Profile";
+
+    // new SpeechSynthesisUtterance object
+    let utter = new SpeechSynthesisUtterance();
+    utter.lang = 'en-US';
+    utter.text = text_welcome;
+    utter.volume = 0.5;
+    // speak
+    window.speechSynthesis.speak(utter);
+});
+
 // Speaking Paragraph
 const text_ = "Hi, I'm an IT Engineer having good knowledge and hands-on of ML-Stack & Full-Stack development. I love to build web and software which can have a potentially good impact on society.";
 
@@ -70,6 +84,45 @@ document.querySelector(".speakAbout").addEventListener("click", () => {
     utter.text = text_;
     utter.volume = 0.5;
 
+    // speak
+    window.speechSynthesis.speak(utter);
+});
+
+// "Redirecting Linkedin"
+const text_linkedin= "Redirecting Linkedin";
+document.querySelector(".linkedin").addEventListener("click", () => {
+    
+    // new SpeechSynthesisUtterance object
+    let utter = new SpeechSynthesisUtterance();
+    utter.lang = 'en-US';
+    utter.text = text_linkedin;
+    utter.volume = 0.5;
+    // speak
+    window.speechSynthesis.speak(utter);
+});
+
+// "Redirecting Github"
+const text_github = "Redirecting Github";
+document.querySelector(".github").addEventListener("click", () => {
+    
+    // new SpeechSynthesisUtterance object
+    let utter = new SpeechSynthesisUtterance();
+    utter.lang = 'en-US';
+    utter.text = text_github;
+    utter.volume = 0.5;
+    // speak
+    window.speechSynthesis.speak(utter);
+});
+
+// "Downloading Resume..."
+const text_resume = "Downloading Resume";
+document.querySelector(".resumeDownload").addEventListener("click", () => {
+    
+    // new SpeechSynthesisUtterance object
+    let utter = new SpeechSynthesisUtterance();
+    utter.lang = 'en-US';
+    utter.text = text_resume;
+    utter.volume = 0.5;
     // speak
     window.speechSynthesis.speak(utter);
 });
