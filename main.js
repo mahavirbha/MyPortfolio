@@ -56,3 +56,20 @@ function changeBack(){
     document.getElementById("submit").value = "Send Message";
     document.getElementById("edited").innerHTML = "";
 }
+
+// Speaking Paragraph
+const text_ = "Hi, I'm an IT Engineer having good knowledge and hands-on of ML-Stack & Full-Stack development. I love to build web and software which can have a potentially good impact on society.";
+
+const speechBtn = document.querySelector(".speakAbout");
+
+document.querySelector(".speakAbout").addEventListener("click", () => {
+    
+    // new SpeechSynthesisUtterance object
+    let utter = new SpeechSynthesisUtterance();
+    utter.lang = 'en-US';
+    utter.text = text_;
+    utter.volume = 0.5;
+
+    // speak
+    window.speechSynthesis.speak(utter);
+});
