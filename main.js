@@ -126,3 +126,4 @@ document.querySelector(".resumeDownload").addEventListener("click", () => {
     // speak
     window.speechSynthesis.speak(utter);
 });
+
