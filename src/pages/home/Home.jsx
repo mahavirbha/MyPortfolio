@@ -61,9 +61,14 @@ export default function Home() {
 
         {profileState ? <Profile/> : ""}
         <div className="homeContainer">
-            <Sidebar/>
-            <Feed/>
-            <Rightbar profile={profileState}/>        
+            {profileState ? "" : (<>
+                <Sidebar/>
+                <Feed/>
+                <Rightbar profile={profileState}/>            
+            </> 
+            )
+            }
+        
         </div>
         </>
         
