@@ -523,6 +523,7 @@ video {
 .works_title {
   font-size: var(--h2-font-size);
   color: var(--first-color-lighten);
+  text-align: center;
 }
 
 .works_img:hover .works_data {
