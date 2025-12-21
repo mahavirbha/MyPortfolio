@@ -128,9 +128,10 @@ function addGitHubFilter() {
  */
 function createProjectCard(project) {
   const isVideo = project.type === 'video';
+  const basePath = import.meta.env.BASE_URL || '/';
   const mediaPath = isVideo 
-    ? `./assets/videos/${project.media}` 
-    : `./assets/images/projects/${project.media}`;
+    ? `${basePath}assets/videos/${project.media}` 
+    : `${basePath}assets/images/projects/${project.media}`;
 
   return `
     <article class="project_card" data-project-id="${project.id}">
@@ -385,9 +386,10 @@ function openModal(projectId) {
   }
 
   const isVideo = project.type === 'video';
+  const basePath = import.meta.env.BASE_URL || '/';
   const mediaPath = isVideo 
-    ? `./assets/videos/${project.media}` 
-    : `./assets/images/projects/${project.media}`;
+    ? `${basePath}assets/videos/${project.media}` 
+    : `${basePath}assets/images/projects/${project.media}`;
 
   modalState.contentElement.innerHTML = `
     <button class="modal_close" type="button" aria-label="Close modal">
