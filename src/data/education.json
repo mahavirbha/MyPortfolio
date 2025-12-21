@@ -1,0 +1,31 @@
+{
+  "timeline": [
+    {
+      "id": "secondary",
+      "period": "2015",
+      "level": "Secondary Education",
+      "institution": "Om Shanti Vidhyalaya - Malvan",
+      "board": "GSEB",
+      "result": "87.67%",
+      "icon": "bx-book"
+    },
+    {
+      "id": "higher-secondary",
+      "period": "2015 - 2017",
+      "level": "Higher Secondary Education",
+      "institution": "S.N. Vidhyalaya - Surendranagar",
+      "board": "GSEB",
+      "result": "81.00%",
+      "icon": "bx-book-open"
+    },
+    {
+      "id": "bachelors",
+      "period": "2017 - 2021",
+      "level": "Bachelor of Engineering (IT)",
+      "institution": "Government Engineering College, Modasa",
+      "board": "Gujarat Technological University",
+      "result": "CGPA 8.32",
+      "icon": "bx-graduation"
+    }
+  ]
+}

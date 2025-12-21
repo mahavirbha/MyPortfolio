@@ -1,0 +1,22 @@
+{
+  "name": "mahavirsinh-portfolio",
+  "version": "2.0.0",
+  "description": "Modern portfolio with Three.js, GSAP animations, and tsParticles",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "three": "^0.170.0",
+    "@tsparticles/engine": "^3.7.1",
+    "@tsparticles/slim": "^3.7.1"
+  },
+  "devDependencies": {
+    "vite": "^6.0.3"
+  },
+  "author": "Mahavirsinh Chauhan",
+  "license": "MIT"
+}

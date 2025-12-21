@@ -1,0 +1,36 @@
+{
+  "name": "Mahavirsinh Chauhan",
+  "title": "Senior Software Engineer",
+  "tagline": "Full-Stack & Mobile Engineer",
+  "about": {
+    "description": "Senior Software Engineer with 3.5+ years of experience building scalable web and mobile platforms using React, Next.js, and React Native. Strong background in component-driven architecture, design systems, and performance optimization. Proven ownership of reusable UI libraries, widget-driven runtimes, and internal tooling.",
+    "yearsExperience": 3.5,
+    "projectsCompleted": 20,
+    "companiesWorked": 1
+  },
+  "contact": {
+    "phone": "+91-8320152376",
+    "whatsapp": "+919687264433",
+    "email": "mahavirsinhchauhan29@gmail.com",
+    "location": "Bangalore, India"
+  },
+  "social": {
+    "linkedin": "https://www.linkedin.com/in/mahavirbha/",
+    "github": "https://github.com/mahavirbha",
+    "facebook": "https://www.facebook.com/mahavir.chauhan.505/",
+    "instagram": "https://www.instagram.com/mahavirbha_/",
+    "twitter": "https://twitter.com/mahavirBHA1"
+  },
+  "resume": "Mahavirsinh_Chauhan.pdf",
+  "images": {
+    "profile": "mahavirbha_pic2.png",
+    "about": "meOrange1.png"
+  },
+  "speech": {
+    "welcome": "Welcome to My Profile",
+    "about": "Senior Software Engineer with over 3.5 years of experience building scalable web and mobile platforms using React, Next.js, and React Native.",
+    "linkedin": "Redirecting Linkedin",
+    "github": "Redirecting Github",
+    "resume": "Downloading Resume"
+  }
+}

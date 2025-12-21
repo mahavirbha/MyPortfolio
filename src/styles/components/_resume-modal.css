@@ -1,0 +1,260 @@
+/* ============================================
+   Resume Preview Modal
+   ============================================ */
+
+.resume-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: none;
+}
+
+.resume-modal.active {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.resume-modal_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+
+.resume-modal_content {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  height: 90vh;
+  max-height: 90vh;
+  background: var(--container-color);
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.9) translateY(20px);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.resume-modal.active .resume-modal_content {
+  transform: scale(1) translateY(0);
+}
+
+.resume-modal_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: var(--first-color);
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.resume-modal_title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--h3-font-size);
+  font-weight: 600;
+  margin: 0;
+}
+
+.resume-modal_title i {
+  font-size: 1.5rem;
+}
+
+.resume-modal_actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.resume-modal_btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: var(--small-font-size);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.resume-modal_btn--download {
+  background: #fff;
+  color: var(--first-color);
+}
+
+.resume-modal_btn--download:hover {
+  background: var(--first-color-alt);
+  color: #fff;
+}
+
+.resume-modal_btn--external {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.resume-modal_btn--external:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.resume-modal_btn--close {
+  background: transparent;
+  color: #fff;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.resume-modal_btn--close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.resume-modal_btn i {
+  font-size: 1.1rem;
+}
+
+.resume-modal_body {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: #525659;
+}
+
+.resume-modal_iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.resume-modal_fallback {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  height: 100%;
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-color);
+}
+
+.resume-modal_fallback i {
+  font-size: 4rem;
+  color: var(--first-color);
+  opacity: 0.5;
+}
+
+.resume-modal_fallback p {
+  font-size: var(--normal-font-size);
+  opacity: 0.8;
+}
+
+/* Mobile fallback */
+@media screen and (max-width: 768px) {
+  .resume-modal_content {
+    width: 95%;
+    height: 95vh;
+    border-radius: 0.75rem;
+  }
+
+  .resume-modal_header {
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .resume-modal_title {
+    font-size: var(--normal-font-size);
+  }
+
+  .resume-modal_actions {
+    gap: 0.25rem;
+  }
+
+  .resume-modal_btn {
+    padding: 0.4rem 0.75rem;
+    font-size: var(--smaller-font-size);
+  }
+
+  .resume-modal_btn span {
+    display: none;
+  }
+
+  /* Show fallback on mobile since PDF iframes often don't work */
+  .resume-modal_iframe {
+    display: none;
+  }
+
+  .resume-modal_fallback {
+    display: flex;
+  }
+}
+
+/* Force fallback when iframe fails */
+.resume-modal.fallback .resume-modal_iframe {
+  display: none;
+}
+
+.resume-modal.fallback .resume-modal_fallback {
+  display: flex;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .resume-modal_content {
+  background: var(--container-color);
+}
+
+[data-theme="dark"] .resume-modal_body {
+  background: #1a1a1a;
+}
+
+/* Keyboard focus styles */
+.resume-modal_btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Animation for modal */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+  overflow: hidden;
+}

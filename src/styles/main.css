@@ -1,0 +1,31 @@
+/* =========================================
+   Main CSS Entry - Imports All Modules
+   ========================================= */
+
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+/* Base */
+@import "./base/_variables.css";
+@import "./base/_reset.css";
+@import "./base/_typography.css";
+@import "./base/_layout.css";
+
+/* Components */
+@import "./components/_header.css";
+@import "./components/_buttons.css";
+@import "./components/_preloader.css";
+@import "./components/_cursor.css";
+@import "./components/_resume-modal.css";
+
+/* Sections */
+@import "./sections/_home.css";
+@import "./sections/_about.css";
+@import "./sections/_education.css";
+@import "./sections/_skills.css";
+@import "./sections/_projects.css";
+@import "./sections/_contact.css";
+@import "./sections/_footer.css";
+
+/* Utilities */
+@import "./utilities/_animations.css";

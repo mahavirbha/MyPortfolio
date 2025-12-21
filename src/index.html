@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Mahavirsinh Chauhan - Senior Software Engineer with 3.5+ years building scalable web and mobile platforms using React, Next.js, and React Native." />
+    <meta name="keywords" content="Mahavirsinh Chauhan, Senior Software Engineer, React, Next.js, React Native, Expo, Full Stack Developer, Portfolio" />
+    <meta name="author" content="Mahavirsinh Chauhan" />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mahavirsinh Chauhan | Senior Software Engineer" />
+    <meta property="og:description" content="Senior Software Engineer building scalable web and mobile platforms with React, Next.js, and React Native." />
+    <meta property="og:image" content="./assets/images/profile/mahavirbha_pic2.png" />
+    <meta property="og:url" content="https://mahavirbha.github.io/MyPortfolio/" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mahavirsinh Chauhan | Senior Software Engineer" />
+    <meta name="twitter:description" content="Senior Software Engineer building scalable web and mobile platforms with React, Next.js, and React Native." />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    
+    <!-- BoxIcons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+    <title>Mahavirsinh Chauhan | Senior Software Engineer</title>
+
+    <!-- Critical CSS - Prevents FOUC (Flash of Unstyled Content) -->
+    <style>
+      /* Hide everything except preloader until CSS loads */
+      .no-js-hide { opacity: 0; }
+      
+      /* Preloader critical styles - visible immediately */
+      .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #290f09;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+      .preloader.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      .preloader_logo {
+        font-family: 'Poppins', sans-serif;
+        font-size: 3rem;
+        font-weight: 700;
+        color: #cc4b2c;
+        margin-bottom: 1rem;
+        animation: pulse 1.5s infinite;
+      }
+      .preloader_spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(204, 75, 44, 0.2);
+        border-top-color: #cc4b2c;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      .preloader_progress {
+        width: 200px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 9999px;
+        margin-top: 1rem;
+        overflow: hidden;
+      }
+      .preloader_progress-bar {
+        width: 0;
+        height: 100%;
+        background: #cc4b2c;
+        border-radius: 9999px;
+        transition: width 0.3s ease;
+      }
+      .preloader_text {
+        color: #fffafa;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.813rem;
+        margin-top: 0.5rem;
+        opacity: 0.8;
+      }
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.1); opacity: 0.8; }
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      /* Hide body content until JS runs */
+      body:not(.loaded) > *:not(.preloader) {
+        opacity: 0 !important;
+        visibility: hidden !important;
+      }
+      
+      /* Prevent scroll during load */
+      body:not(.loaded) {
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ========== Preloader ========== -->
+    <div class="preloader">
+      <div class="preloader_logo">Welcome</div>
+      <div class="preloader_spinner"></div>
+      <div class="preloader_progress">
+        <div class="preloader_progress-bar"></div>
+      </div>
+      <p class="preloader_text">Loading...</p>
+    </div>
+
+    <!-- ========== Header ========== -->
+    <header class="l-header">
+      <nav class="nav bd-grid">
+        <div class="nav_toggle" id="nav-toggle">
+          <i class="bx bx-menu"></i>
+        </div>
+
+        <a href="#home" class="nav_logo">
+          <i class="bx bx-code-alt"></i>
+          MC
+        </a>
+
+        <button class="header_theme-toggle" data-theme-toggle>
+          <i class="bx bx-moon"></i>
+        </button>
+
+        <div class="nav_menu" id="nav-menu">
+          <div class="nav_close" id="nav-close">
+            <i class="bx bx-x"></i>
+          </div>
+
+          <ul class="nav_list">
+            <li class="nav_item">
+              <a href="#home" class="nav_link active-link">
+                <i class="bx bx-home"></i>
+                Home
+              </a>
+            </li>
+            <li class="nav_item">
+              <a href="#about" class="nav_link">
+                <i class="bx bx-user"></i>
+                About
+              </a>
+            </li>
+            <li class="nav_item">
+              <a href="#education" class="nav_link">
+                <i class="bx bx-book"></i>
+                Education
+              </a>
+            </li>
+            <li class="nav_item">
+              <a href="#skills" class="nav_link">
+                <i class="bx bx-receipt"></i>
+                Skills
+              </a>
+            </li>
+            <li class="nav_item">
+              <a href="#projects" class="nav_link">
+                <i class="bx bx-briefcase-alt-2"></i>
+                Projects
+              </a>
+            </li>
+            <li class="nav_item">
+              <a href="#contact" class="nav_link">
+                <i class="bx bx-message-square-detail"></i>
+                Contact
+              </a>
+            </li>
+          </ul>
+
+          <div class="nav_theme-toggle" data-theme-toggle>
+            <i class="bx bx-moon"></i>
+            <span>Dark Mode</span>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- ========== Main Content ========== -->
+    <main class="l-main">
+      
+      <!-- ===== Home Section ===== -->
+      <section class="home" id="home">
+        <!-- Three.js Canvas -->
+        <div id="three-canvas" class="home_canvas"></div>
+        
+        <!-- Particles -->
+        <div id="particles-js"></div>
+
+        <div class="home_container bd-grid">
+          <div class="home_data">
+            <div class="home_img">
+              <img src="./assets/images/profile/mahavirbha_pic2.png" alt="Mahavirsinh Chauhan" />
+            </div>
+
+            <h1 class="home_title">Mahavirsinh Chauhan</h1>
+            <span class="home_profession" id="typed-text">Senior Software Engineer</span>
+
+            <div class="home_social">
+              <a href="https://www.linkedin.com/in/mahavirbha/" target="_blank" rel="noopener" class="home_social-link linkedin" data-social="linkedin" title="LinkedIn">
+                <i class="bx bxl-linkedin"></i>
+              </a>
+              <a href="https://github.com/mahavirbha" target="_blank" rel="noopener" class="home_social-link github" data-social="github" title="GitHub">
+                <i class="bx bxl-github"></i>
+              </a>
+              <a href="https://www.instagram.com/mahavirbha_/" target="_blank" rel="noopener" class="home_social-link" title="Instagram">
+                <i class="bx bxl-instagram"></i>
+              </a>
+              <a href="https://twitter.com/mahavirBHA1" target="_blank" rel="noopener" class="home_social-link" title="Twitter">
+                <i class="bx bxl-twitter"></i>
+              </a>
+            </div>
+
+            <div class="home_button">
+              <a href="#contact" class="button">
+                <i class="bx bx-send"></i>
+                Contact Me
+              </a>
+              <button class="button button--outline" id="resume-preview-btn">
+                <i class="bx bx-file"></i>
+                View Resume
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="scroll-indicator">
+          <span>Scroll Down</span>
+          <i class="bx bx-chevron-down"></i>
+        </div>
+      </section>
+
+      <!-- ===== About Section ===== -->
+      <section class="about section" id="about">
+        <span class="section-subtitle">My Intro</span>
+        <h2 class="section-title">About Me</h2>
+
+        <div class="about_container bd-grid">
+          <div class="about_img">
+            <img src="./assets/images/profile/meOrange1.png" alt="Mahavirsinh Chauhan" />
+          </div>
+
+          <div class="about_data">
+            <button class="speakAbout">
+              <i class="bx bx-volume-full"></i>
+              Listen
+            </button>
+            
+            <p class="about_description" data-animate="text">
+              Senior Software Engineer with 3.5+ years of experience building scalable web and mobile platforms using React, Next.js, and React Native. Strong background in component-driven architecture, design systems, and performance optimization for production-grade applications.
+            </p>
+
+            <div class="about_information">
+              <h3 class="about_information-title">Personal Info</h3>
+              
+              <div class="about_information-data">
+                <i class="bx bx-user about_information-icon"></i>
+                <span>Mahavirsinh Chauhan</span>
+              </div>
+              
+              <div class="about_information-data">
+                <i class="bx bx-phone about_information-icon"></i>
+                <span>+91-8320152376</span>
+              </div>
+              
+              <div class="about_information-data">
+                <i class="bx bx-envelope about_information-icon"></i>
+                <span>mahavirsinhchauhan29@gmail.com</span>
+              </div>
+              
+              <div class="about_information-data">
+                <i class="bx bx-map about_information-icon"></i>
+                <span>Bangalore, India</span>
+              </div>
+            </div>
+
+            <div class="about_stats">
+              <div class="about_stat-item">
+                <span class="about_stat-number">3.5+</span>
+                <span class="about_stat-label">Years Experience</span>
+              </div>
+              <div class="about_stat-item">
+                <span class="about_stat-number">20+</span>
+                <span class="about_stat-label">Projects</span>
+              </div>
+              <div class="about_stat-item">
+                <span class="about_stat-number">1</span>
+                <span class="about_stat-label">Company</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Education Section ===== -->
+      <section class="education section" id="education">
+        <span class="section-subtitle">Qualification</span>
+        <h2 class="section-title">My Education</h2>
+
+        <div class="education_container bd-grid">
+          <div class="education_timeline">
+            <!-- Education items rendered by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Skills Section ===== -->
+      <section class="skills section" id="skills">
+        <span class="section-subtitle">My Abilities</span>
+        <h2 class="section-title">Skills</h2>
+
+        <div class="skills_container bd-grid">
+          <!-- Skills rendered by JavaScript -->
+        </div>
+      </section>
+
+      <!-- ===== Projects Section ===== -->
+      <section class="projects section" id="projects">
+        <span class="section-subtitle">My Work</span>
+        <h2 class="section-title">Projects</h2>
+
+        <div class="projects_filter">
+          <!-- Filter buttons rendered by JavaScript -->
+        </div>
+
+        <div class="projects_container bd-grid">
+          <!-- Project cards rendered by JavaScript -->
+        </div>
+      </section>
+
+      <!-- ===== Contact Section ===== -->
+      <section class="contact section" id="contact">
+        <span class="section-subtitle">Get In Touch</span>
+        <h2 class="section-title">Contact Me</h2>
+
+        <div class="contact_container bd-grid">
+          <div class="contact_info">
+            <div class="contact_card">
+              <i class="bx bx-phone-call contact_card-icon"></i>
+              <h3 class="contact_card-title">Phone</h3>
+              <span class="contact_card-data">
+                <a href="tel:+918320152376">+91-8320152376</a>
+              </span>
+            </div>
+
+            <div class="contact_card">
+              <i class="bx bx-mail-send contact_card-icon"></i>
+              <h3 class="contact_card-title">Email</h3>
+              <span class="contact_card-data">
+                <a href="mailto:mahavirsinhchauhan29@gmail.com">mahavirsinhchauhan29@gmail.com</a>
+              </span>
+            </div>
+
+            <div class="contact_card">
+              <i class="bx bxl-whatsapp contact_card-icon"></i>
+              <h3 class="contact_card-title">WhatsApp</h3>
+              <span class="contact_card-data">
+                <a href="https://wa.me/919687264433" target="_blank">+91-9687264433</a>
+              </span>
+            </div>
+
+            <div class="contact_card">
+              <i class="bx bx-map contact_card-icon"></i>
+              <h3 class="contact_card-title">Location</h3>
+              <span class="contact_card-data">Bangalore, India</span>
+            </div>
+          </div>
+
+          <form class="contact_form" id="contact-form" action="https://wa.me/919687264433" method="GET">
+            <h3 class="contact_form-title">Send Me a Message</h3>
+            
+            <div class="contact_form-group">
+              <label class="contact_form-label" for="name">Name</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                class="contact_form-input" 
+                placeholder="Your Name" 
+                required 
+              />
+            </div>
+
+            <div class="contact_form-group">
+              <label class="contact_form-label" for="email">Email</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="contact_form-input" 
+                placeholder="your@email.com" 
+                required 
+              />
+            </div>
+
+            <div class="contact_form-group">
+              <label class="contact_form-label" for="message">Message</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                class="contact_form-input" 
+                placeholder="Write your message here..." 
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="contact_form-submit">
+              <i class="bx bxl-whatsapp"></i>
+              Send via WhatsApp
+            </button>
+
+            <p class="contact_whatsapp-note">
+              <i class="bx bxl-whatsapp"></i>
+              Message will be sent via WhatsApp
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========== Resume Preview Modal ========== -->
+    <div class="resume-modal" id="resume-modal">
+      <div class="resume-modal_overlay" id="resume-modal-close"></div>
+      <div class="resume-modal_content">
+        <div class="resume-modal_header">
+          <h3 class="resume-modal_title">
+            <i class="bx bx-file"></i>
+            My Resume
+          </h3>
+          <div class="resume-modal_actions">
+            <a href="./Mahavirsinh_Chauhan.pdf" download class="resume-modal_btn resume-modal_btn--download">
+              <i class="bx bx-download"></i>
+              Download
+            </a>
+            <a href="./Mahavirsinh_Chauhan.pdf" target="_blank" class="resume-modal_btn resume-modal_btn--external">
+              <i class="bx bx-link-external"></i>
+              Open
+            </a>
+            <button class="resume-modal_btn resume-modal_btn--close" id="resume-modal-close-btn">
+              <i class="bx bx-x"></i>
+            </button>
+          </div>
+        </div>
+        <div class="resume-modal_body">
+          <iframe 
+            data-src="./Mahavirsinh_Chauhan.pdf" 
+            class="resume-modal_iframe"
+            title="Resume Preview"
+          ></iframe>
+          <!-- Fallback for mobile/unsupported browsers -->
+          <div class="resume-modal_fallback">
+            <i class="bx bx-file-blank"></i>
+            <p>PDF preview not available on this device</p>
+            <a href="./Mahavirsinh_Chauhan.pdf" download class="button">
+              <i class="bx bx-download"></i>
+              Download Resume
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== Footer ========== -->
+    <footer class="footer section">
+      <div class="footer_container bd-grid">
+        <div class="footer_content">
+          <h2 class="footer_title">Mahavirsinh Chauhan</h2>
+          <p class="footer_description">Senior Software Engineer | React, Next.js & React Native</p>
+
+          <div class="footer_social">
+            <a href="https://www.linkedin.com/in/mahavirbha/" target="_blank" rel="noopener" class="footer_social-link">
+              <i class="bx bxl-linkedin"></i>
+            </a>
+            <a href="https://github.com/mahavirbha" target="_blank" rel="noopener" class="footer_social-link">
+              <i class="bx bxl-github"></i>
+            </a>
+            <a href="https://www.facebook.com/mahavir.chauhan.505/" target="_blank" rel="noopener" class="footer_social-link">
+              <i class="bx bxl-facebook"></i>
+            </a>
+            <a href="https://www.instagram.com/mahavirbha_/" target="_blank" rel="noopener" class="footer_social-link">
+              <i class="bx bxl-instagram"></i>
+            </a>
+            <a href="https://twitter.com/mahavirBHA1" target="_blank" rel="noopener" class="footer_social-link">
+              <i class="bx bxl-twitter"></i>
+            </a>
+          </div>
+
+          <div class="footer_links">
+            <a href="#home" class="footer_link">Home</a>
+            <a href="#about" class="footer_link">About</a>
+            <a href="#skills" class="footer_link">Skills</a>
+            <a href="#projects" class="footer_link">Projects</a>
+            <a href="#contact" class="footer_link">Contact</a>
+          </div>
+
+          <p class="footer_copy">
+            &copy; 2024 Mahavirsinh Chauhan. Made with <i class="bx bx-heart" style="color: var(--first-color);"></i>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+      <i class="bx bx-up-arrow-alt"></i>
+    </button>
+
+    <!-- Main JavaScript -->
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

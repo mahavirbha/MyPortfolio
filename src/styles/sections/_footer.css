@@ -1,0 +1,133 @@
+/* =========================================
+   Footer Styles
+   ========================================= */
+
+.footer {
+  background: var(--first-color-darken);
+  color: var(--first-color-lighten);
+  padding: 3rem 0 2rem;
+}
+
+.footer_container {
+  row-gap: 2rem;
+}
+
+.footer_content {
+  text-align: center;
+}
+
+.footer_title {
+  font-size: var(--h2-font-size);
+  margin-bottom: var(--mb-1);
+  color: var(--first-color-lighten);
+}
+
+.footer_description {
+  font-size: var(--small-font-size);
+  opacity: 0.8;
+  margin-bottom: var(--mb-2);
+}
+
+/* Footer Social */
+.footer_social {
+  display: flex;
+  justify-content: center;
+  gap: var(--mb-2);
+  margin-bottom: var(--mb-3);
+}
+
+.footer_social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--first-color-lighten);
+  border-radius: 50%;
+  font-size: 1.2rem;
+  transition: all var(--transition-fast);
+}
+
+.footer_social-link:hover {
+  background: var(--first-color);
+  transform: translateY(-3px);
+}
+
+/* Footer Links */
+.footer_links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--mb-2);
+  margin-bottom: var(--mb-3);
+}
+
+.footer_link {
+  font-size: var(--small-font-size);
+  color: var(--first-color-lighten);
+  opacity: 0.8;
+  transition: opacity var(--transition-fast);
+}
+
+.footer_link:hover {
+  opacity: 1;
+}
+
+/* Copyright */
+.footer_copy {
+  text-align: center;
+  font-size: var(--smaller-font-size);
+  color: var(--first-color-lighten);
+  opacity: 0.6;
+  padding-top: var(--mb-2);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer_copy a {
+  color: var(--first-color);
+}
+
+/* Back to Top */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 45px;
+  height: 45px;
+  background: var(--first-color);
+  color: var(--first-color-lighten);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 20px var(--shadow-color);
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-fast);
+  z-index: 50;
+  cursor: pointer;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background: var(--first-color-dark);
+  transform: translateY(-3px);
+}
+
+/* Responsive */
+@media screen and (min-width: 768px) {
+  .footer_container {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding: 4rem 0 2rem;
+  }
+}

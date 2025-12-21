@@ -1,0 +1,95 @@
+/* =========================================
+   CSS Variables - Light & Dark Theme
+   ========================================= */
+
+:root {
+  /* Layout */
+  --header-height: 3rem;
+  --nav-width: 324px;
+
+  /* Font Weight */
+  --font-medium: 500;
+  --font-semi-bold: 600;
+  --font-bold: 700;
+
+  /* Colors - Light Theme (Default) */
+  --first-color: #cc4b2c;
+  --first-color-dark: #662616;
+  --first-color-darken: #290f09;
+  --text-color: #54423d;
+  --first-color-light: #eae7e6;
+  --first-color-lighten: #fffafa;
+  
+  /* Additional Theme Colors */
+  --bg-color: #fffafa;
+  --bg-color-alt: #f5f0ef;
+  --card-bg: #ffffff;
+  --border-color: rgba(84, 66, 61, 0.1);
+  --shadow-color: rgba(204, 75, 44, 0.15);
+  
+  /* Accent Colors */
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+  --info-color: #3b82f6;
+
+  /* Typography */
+  --body-font: "Poppins", sans-serif;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: 0.938rem;
+  --small-font-size: 0.813rem;
+  --smaller-font-size: 0.75rem;
+
+  /* Spacing */
+  --mb-1: 0.5rem;
+  --mb-2: 1rem;
+  --mb-3: 1.5rem;
+  --mb-4: 2rem;
+  --mb-5: 2.5rem;
+
+  /* Z-index */
+  --z-fixed: 100;
+  --z-modal: 1000;
+  --z-cursor: 9999;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-full: 9999px;
+}
+
+/* Dark Theme Variables */
+[data-theme="dark"] {
+  --first-color: #ff6b4a;
+  --first-color-dark: #ff8a6b;
+  --first-color-darken: #ffaa8b;
+  --text-color: #e5e5e5;
+  --first-color-light: #2a2a2a;
+  --first-color-lighten: #1a1a1a;
+  
+  --bg-color: #0f0f0f;
+  --bg-color-alt: #1a1a1a;
+  --card-bg: #242424;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --shadow-color: rgba(255, 107, 74, 0.2);
+}
+
+/* Responsive Typography */
+@media screen and (min-width: 768px) {
+  :root {
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 0.875rem;
+    --smaller-font-size: 0.813rem;
+  }
+}

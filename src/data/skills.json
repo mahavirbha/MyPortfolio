@@ -1,0 +1,70 @@
+{
+  "categories": [
+    {
+      "name": "Frontend",
+      "icon": "bx-code-alt",
+      "skills": [
+        { "name": "React", "level": 95, "icon": "bxl-react" },
+        { "name": "Next.js", "level": 90, "icon": "bx-code-block" },
+        { "name": "React Native", "level": 90, "icon": "bxl-react" },
+        { "name": "JavaScript", "level": 95, "icon": "bxl-javascript" },
+        { "name": "TypeScript", "level": 85, "icon": "bxl-typescript" },
+        { "name": "Tailwind CSS", "level": 90, "icon": "bxl-tailwind-css" }
+      ]
+    },
+    {
+      "name": "UI & Design Systems",
+      "icon": "bxs-palette",
+      "skills": [
+        { "name": "Material-UI", "level": 95, "icon": "bxs-palette" },
+        { "name": "shadcn/ui", "level": 85, "icon": "bx-layer" },
+        { "name": "Styled Components", "level": 85, "icon": "bxl-css3" },
+        { "name": "Accessibility (a11y)", "level": 80, "icon": "bx-accessibility" }
+      ]
+    },
+    {
+      "name": "State & Data",
+      "icon": "bx-data",
+      "skills": [
+        { "name": "Redux", "level": 90, "icon": "bxl-redux" },
+        { "name": "React Query", "level": 85, "icon": "bx-refresh" },
+        { "name": "GraphQL", "level": 80, "icon": "bxl-graphql" },
+        { "name": "REST APIs", "level": 90, "icon": "bx-transfer" }
+      ]
+    },
+    {
+      "name": "Backend & Tools",
+      "icon": "bx-server",
+      "skills": [
+        { "name": "Node.js", "level": 80, "icon": "bxl-nodejs" },
+        { "name": "PostgreSQL", "level": 75, "icon": "bx-data" },
+        { "name": "Git/GitHub", "level": 90, "icon": "bxl-git" },
+        { "name": "CI/CD", "level": 80, "icon": "bx-git-branch" }
+      ]
+    },
+    {
+      "name": "Mobile & Platform",
+      "icon": "bx-mobile",
+      "skills": [
+        { "name": "Expo SDK", "level": 90, "icon": "bx-mobile-alt" },
+        { "name": "Expo Router", "level": 85, "icon": "bx-navigation" },
+        { "name": "Google Maps", "level": 85, "icon": "bx-map" },
+        { "name": "Authentication", "level": 85, "icon": "bx-lock-alt" },
+        { "name": "Push Notifications", "level": 85, "icon": "bx-bell" },
+        { "name": "Deep Linking", "level": 85, "icon": "bx-link" },
+        { "name": "PWA", "level": 80, "icon": "bx-window-alt" },
+        { "name": "Native Modules", "level": 75, "icon": "bx-chip" }
+      ]
+    },
+    {
+      "name": "Search & Performance",
+      "icon": "bx-search-alt",
+      "skills": [
+        { "name": "Algolia", "level": 80, "icon": "bx-search" },
+        { "name": "Fuse.js", "level": 85, "icon": "bx-filter" },
+        { "name": "Lazy Loading", "level": 90, "icon": "bx-loader" },
+        { "name": "Memoization", "level": 85, "icon": "bx-memory-card" }
+      ]
+    }
+  ]
+}

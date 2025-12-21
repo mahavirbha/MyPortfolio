@@ -1,0 +1,136 @@
+/* =========================================
+   Button Styles
+   ========================================= */
+
+/* Primary Button */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  background: var(--first-color);
+  color: var(--first-color-lighten);
+  font-weight: var(--font-semi-bold);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  border: none;
+  font-size: var(--normal-font-size);
+  text-decoration: none;
+}
+
+.button:hover {
+  background: var(--first-color-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px var(--shadow-color);
+}
+
+.button i {
+  font-size: 1.2rem;
+}
+
+/* Button Variants */
+.button--outline {
+  background: transparent;
+  border: 2px solid var(--first-color);
+  color: var(--first-color);
+}
+
+.button--outline:hover {
+  background: var(--first-color);
+  color: var(--first-color-lighten);
+}
+
+.button--light {
+  background: var(--first-color-light);
+  color: var(--first-color-dark);
+}
+
+.button--light:hover {
+  background: var(--first-color);
+  color: var(--first-color-lighten);
+}
+
+.button--dark {
+  background: var(--first-color-darken);
+}
+
+.button--dark:hover {
+  background: var(--first-color-dark);
+}
+
+/* Button Sizes */
+.button--small {
+  padding: 0.5rem 1.5rem;
+  font-size: var(--small-font-size);
+}
+
+.button--large {
+  padding: 1rem 2.5rem;
+  font-size: var(--h3-font-size);
+}
+
+/* Icon Button */
+.button--icon {
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.button--icon i {
+  font-size: 1.3rem;
+}
+
+/* Button with Loading State */
+.button--loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.button--loading::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  gap: var(--mb-2);
+  flex-wrap: wrap;
+}
+
+/* Link Button */
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--first-color);
+  font-weight: var(--font-medium);
+  transition: all var(--transition-fast);
+}
+
+.link-button:hover {
+  gap: 0.75rem;
+}
+
+.link-button i {
+  transition: transform var(--transition-fast);
+}
+
+.link-button:hover i {
+  transform: translateX(5px);
+}

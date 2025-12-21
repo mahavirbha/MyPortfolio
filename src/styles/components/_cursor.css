@@ -1,0 +1,83 @@
+/* =========================================
+   Custom Cursor Styles
+   ========================================= */
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background: var(--first-color);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  mix-blend-mode: difference;
+  transition: transform 0.15s ease-out, width 0.2s ease, height 0.2s ease;
+}
+
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--first-color);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: calc(var(--z-cursor) - 1);
+  transition: transform 0.3s ease-out, width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+  opacity: 0.5;
+}
+
+/* Cursor States */
+.cursor.hover {
+  transform: scale(2);
+  background: var(--first-color-lighten);
+}
+
+.cursor-follower.hover {
+  transform: scale(1.5);
+  border-color: var(--first-color-lighten);
+}
+
+.cursor.clicking {
+  transform: scale(0.8);
+}
+
+.cursor-follower.clicking {
+  transform: scale(0.8);
+}
+
+/* Link Hover */
+.cursor.link-hover {
+  width: 60px;
+  height: 60px;
+  background: transparent;
+  border: 2px solid var(--first-color);
+  mix-blend-mode: normal;
+}
+
+.cursor.link-hover::after {
+  content: 'VIEW';
+  position: absolute;
+  font-size: 8px;
+  font-weight: var(--font-bold);
+  color: var(--first-color);
+}
+
+/* Hide on Mobile */
+@media (max-width: 1024px) {
+  .cursor,
+  .cursor-follower {
+    display: none;
+  }
+}
+
+/* Hide on touch devices */
+@media (hover: none) {
+  .cursor,
+  .cursor-follower {
+    display: none;
+  }
+}
