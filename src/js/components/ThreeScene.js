@@ -22,7 +22,7 @@ export function initThreeScene() {
   
   // Camera
   camera = new THREE.PerspectiveCamera(
-    80,
+    75,
     container.clientWidth / container.clientHeight,
     0.1,
     1000
@@ -66,6 +66,7 @@ export function initThreeScene() {
 function createMainGeometry() {
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
   const color = isDark ? 0xff6b4a : 0xcc4b2c;
+  const opacity = isDark ? 0.8 : 0.25;
 
   // Icosahedron with wireframe
   geometry = new THREE.IcosahedronGeometry(1.5, 1);
@@ -75,7 +76,7 @@ function createMainGeometry() {
     color: color,
     wireframe: true,
     transparent: true,
-    opacity: 0.8
+    opacity: opacity,
   });
 
   mesh = new THREE.Mesh(geometry, material);
