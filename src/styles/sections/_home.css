@@ -97,6 +97,20 @@
   display: flex;
   gap: var(--mb-2);
   margin-bottom: var(--mb-4);
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+@media screen and (max-width: 375px) {
+  .home_social {
+    gap: 0.5rem;
+  }
+  
+  .home_social-link {
+    width: 35px;
+    height: 35px;
+    font-size: 1.1rem;
+  }
 }
 
 .home_social-link {
@@ -133,6 +147,12 @@
 
 .home_social-link:hover::before {
   transform: translateY(0);
+}
+
+.home_social-link svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: currentColor;
 }
 
 .home_button {
