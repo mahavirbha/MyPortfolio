@@ -19,6 +19,9 @@ export async function initParticles() {
     options: getParticleConfig(isDark)
   });
 
+  // Auto-add particles every 3 seconds
+  startAutoParticles();
+
   // Update particles on theme change
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
@@ -30,6 +33,38 @@ export async function initParticles() {
   });
 
   observer.observe(document.documentElement, { attributes: true });
+}
+
+/**
+ * Auto-add particles at interval
+ */
+let autoParticleInterval = null;
+
+function startAutoParticles() {
+  // Add particles every 3 seconds
+  autoParticleInterval = setInterval(() => {
+    const container = tsParticles.domItem(0);
+    if (container) {
+      // Add 2-3 particles at random positions
+      const count = Math.floor(Math.random() * 2) + 2;
+      for (let i = 0; i < count; i++) {
+        container.particles.addParticle({
+          x: Math.random() * container.canvas.size.width,
+          y: Math.random() * container.canvas.size.height
+        });
+      }
+    }
+  }, 1000);
+}
+
+/**
+ * Stop auto particles (for cleanup)
+ */
+export function stopAutoParticles() {
+  if (autoParticleInterval) {
+    clearInterval(autoParticleInterval);
+    autoParticleInterval = null;
+  }
 }
 
 /**
