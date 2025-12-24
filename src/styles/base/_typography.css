@@ -2,7 +2,11 @@
    Typography Styles
    ========================================= */
 
-/* Headings */
+/* Headings - Use Space Grotesk for distinctive look */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font);
+}
+
 h1 {
   font-size: var(--h1-font-size);
   font-weight: var(--font-bold);
@@ -92,4 +96,40 @@ a:hover {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Code & Monospace */
+code, pre, kbd, samp, .mono {
+  font-family: var(--mono-font);
+  font-size: 0.9em;
+}
+
+code {
+  background: var(--bg-color-alt);
+  padding: 0.2em 0.4em;
+  border-radius: var(--radius-sm);
+}
+
+pre {
+  background: var(--bg-color-alt);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+}
+
+/* Cursive Accent */
+.cursive, .signature, .fancy-text {
+  font-family: var(--cursive-font);
+  font-weight: 600;
+}
+
+.cursive-lg {
+  font-family: var(--cursive-font);
+  font-size: 1.5em;
+  font-weight: 700;
 }

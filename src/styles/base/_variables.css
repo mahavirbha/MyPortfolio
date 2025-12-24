@@ -34,7 +34,10 @@
   --info-color: #3b82f6;
 
   /* Typography */
-  --body-font: "Poppins", sans-serif;
+  --body-font: "Plus Jakarta Sans", sans-serif;
+  --heading-font: "Bricolage Grotesque", sans-serif;
+  --cursive-font: "Caveat", cursive;
+  --mono-font: "JetBrains Mono", monospace;
   --h1-font-size: 1.5rem;
   --h2-font-size: 1.25rem;
   --h3-font-size: 1rem;

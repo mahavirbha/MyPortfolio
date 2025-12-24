@@ -22,7 +22,8 @@
 }
 
 .nav_logo {
-  font-size: var(--h2-font-size);
+  font-family: var(--cursive-font);
+  font-size: 1.75rem;
   font-weight: var(--font-bold);
   color: var(--first-color);
   display: flex;

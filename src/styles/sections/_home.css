@@ -74,10 +74,16 @@
 }
 
 .home_title {
-  font-size: var(--h1-font-size);
+  font-size: calc(var(--h1-font-size) * 1.2);
   color: var(--first-color);
   font-weight: var(--font-bold);
   margin-bottom: var(--mb-1);
+}
+
+.home_title .name {
+  font-family: var(--cursive-font);
+  font-size: 1.3em;
+  display: inline-block;
 }
 
 .home_profession {
