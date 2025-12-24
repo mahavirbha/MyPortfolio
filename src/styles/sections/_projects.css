@@ -351,7 +351,220 @@
   font-size: var(--small-font-size);
 }
 
+/* =========================================
+   Modal Gallery (for projects with multiple images)
+   ========================================= */
+
+.modal_gallery {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #000;
+}
+
+.gallery_track {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 2rem 0;
+}
+
+.gallery_slide {
+  flex-shrink: 0;
+  width: 60%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: all 0.5s ease;
+  transform: scale(0.85);
+}
+
+.gallery_slide.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+}
+
+.gallery_slide:not(.active):hover {
+  opacity: 0.7;
+  transform: scale(0.9);
+}
+
+.gallery_slide img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.gallery_nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  z-index: 10;
+  backdrop-filter: blur(4px);
+}
+
+.gallery_nav:hover {
+  background: var(--first-color);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.gallery_nav:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.gallery_nav--prev {
+  left: 1rem;
+}
+
+.gallery_nav--next {
+  right: 1rem;
+}
+
+.gallery_info {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 5;
+}
+
+.gallery_counter {
+  padding: 0.4rem 0.85rem;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: var(--small-font-size);
+  font-weight: 500;
+  border-radius: var(--radius-full);
+}
+
+.gallery_caption {
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: var(--small-font-size);
+  font-weight: 500;
+  border-radius: var(--radius-full);
+  max-width: 300px;
+  text-align: center;
+}
+
+.gallery_thumbnails {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  overflow-x: auto;
+  background: var(--bg-color-alt);
+  scrollbar-width: thin;
+  scrollbar-color: var(--first-color) transparent;
+  scroll-behavior: smooth;
+}
+
+.gallery_thumbnails::-webkit-scrollbar {
+  height: 6px;
+}
+
+.gallery_thumbnails::-webkit-scrollbar-thumb {
+  background: var(--first-color);
+  border-radius: 3px;
+}
+
+.gallery_thumb {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  opacity: 0.5;
+  transform: scale(0.95);
+}
+
+.gallery_thumb:hover {
+  opacity: 0.85;
+  transform: scale(1);
+}
+
+.gallery_thumb.active {
+  border-color: var(--first-color);
+  opacity: 1;
+  transform: scale(1);
+  box-shadow: 0 0 0 2px rgba(var(--first-color-rgb), 0.3);
+}
+
+.gallery_thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* Responsive */
+@media screen and (max-width: 768px) {
+  .gallery_slide {
+    width: 75%;
+  }
+  
+  .gallery_nav {
+    width: 36px;
+    height: 36px;
+    font-size: 1.25rem;
+  }
+  
+  .gallery_nav--prev {
+    left: 0.5rem;
+  }
+  
+  .gallery_nav--next {
+    right: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .gallery_slide {
+    width: 85%;
+  }
+  
+  .gallery_thumb {
+    width: 50px;
+    height: 50px;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .projects_container {
     grid-template-columns: repeat(2, 1fr);

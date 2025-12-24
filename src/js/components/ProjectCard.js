@@ -391,6 +391,9 @@ function openModal(projectId) {
     ? `${basePath}assets/videos/${project.media}` 
     : `${basePath}assets/images/projects/${project.media}`;
 
+  // Check if project has a gallery
+  const hasGallery = project.gallery && project.gallery.length > 0;
+
   modalState.contentElement.innerHTML = `
     <button class="modal_close" type="button" aria-label="Close modal">
       <i class="bx bx-x"></i>
@@ -400,6 +403,33 @@ function openModal(projectId) {
         <video controls autoplay>
           <source src="${mediaPath}" type="video/mp4">
         </video>
+      ` : hasGallery ? `
+        <div class="modal_gallery">
+          <div class="gallery_track">
+            ${project.gallery.map((item, idx) => `
+              <div class="gallery_slide ${idx === 0 ? 'active' : ''}">
+                <img src="${basePath}assets/images/projects/${item.image}" alt="${item.caption}" loading="lazy">
+              </div>
+            `).join('')}
+          </div>
+          <button class="gallery_nav gallery_nav--prev" aria-label="Previous image">
+            <i class="bx bx-chevron-left"></i>
+          </button>
+          <button class="gallery_nav gallery_nav--next" aria-label="Next image">
+            <i class="bx bx-chevron-right"></i>
+          </button>
+          <div class="gallery_info">
+            <span class="gallery_counter">1 / ${project.gallery.length}</span>
+            <div class="gallery_caption">${project.gallery[0].caption}</div>
+          </div>
+        </div>
+        <div class="gallery_thumbnails">
+          ${project.gallery.map((item, idx) => `
+            <div class="gallery_thumb ${idx === 0 ? 'active' : ''}" data-index="${idx}">
+              <img src="${basePath}assets/images/projects/${item.image}" alt="${item.caption}">
+            </div>
+          `).join('')}
+        </div>
       ` : `
         <img src="${mediaPath}" alt="${project.title}">
       `}
@@ -426,6 +456,11 @@ function openModal(projectId) {
     </div>
   `;
 
+  // Initialize gallery navigation if has gallery
+  if (hasGallery) {
+    initGalleryNavigation(project.gallery, basePath);
+  }
+
   // Bind close handlers
   bindCloseHandlers();
 
@@ -433,6 +468,120 @@ function openModal(projectId) {
   modalState.element.classList.add('active');
   document.body.style.overflow = 'hidden';
   modalState.isOpen = true;
+}
+
+/**
+ * Initialize gallery navigation
+ */
+function initGalleryNavigation(gallery, basePath) {
+  const galleryEl = modalState.contentElement.querySelector('.modal_gallery');
+  const track = galleryEl.querySelector('.gallery_track');
+  const slides = galleryEl.querySelectorAll('.gallery_slide');
+  const counter = galleryEl.querySelector('.gallery_counter');
+  const caption = galleryEl.querySelector('.gallery_caption');
+  const thumbs = modalState.contentElement.querySelectorAll('.gallery_thumb');
+  const prevBtn = galleryEl.querySelector('.gallery_nav--prev');
+  const nextBtn = galleryEl.querySelector('.gallery_nav--next');
+  
+  let currentIndex = 0;
+  
+  const updateGallery = (index) => {
+    currentIndex = index;
+    const item = gallery[index];
+    
+    // Calculate translate to center the active slide
+    // Slides are 60% width (defined in CSS)
+    // Center offset = (100% - 60%) / 2 = 20%
+    // Translate = -(index * 60%) + 20%
+    const slideWidth = 60;
+    const offset = (100 - slideWidth) / 2;
+    const translate = -(index * slideWidth) + offset;
+    
+    track.style.transform = `translateX(${translate}%)`;
+    
+    // Update active classes
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+    
+    // Update info
+    counter.textContent = `${index + 1} / ${gallery.length}`;
+    caption.textContent = item.caption;
+    
+    // Update thumbnails
+    thumbs.forEach((thumb, i) => {
+      thumb.classList.toggle('active', i === index);
+    });
+    
+    // Scroll active thumbnail into view
+    thumbs[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  };
+  
+  // Initialize first position
+  updateGallery(0);
+  
+  const goNext = () => {
+    const newIndex = (currentIndex + 1) % gallery.length;
+    updateGallery(newIndex);
+  };
+  
+  const goPrev = () => {
+    const newIndex = (currentIndex - 1 + gallery.length) % gallery.length;
+    updateGallery(newIndex);
+  };
+  
+  // Button clicks
+  nextBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    goNext();
+  });
+  
+  prevBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    goPrev();
+  });
+  
+  // Thumbnail clicks
+  thumbs.forEach((thumb, idx) => {
+    thumb.addEventListener('click', () => updateGallery(idx));
+  });
+  
+  // Slide clicks (click next/prev slide to navigate)
+  slides.forEach((slide, idx) => {
+    slide.addEventListener('click', () => {
+      if (idx !== currentIndex) updateGallery(idx);
+    });
+  });
+  
+  // Touch/swipe support
+  let touchStartX = 0;
+  let touchEndX = 0;
+  const minSwipeDistance = 50;
+  
+  galleryEl.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+  
+  galleryEl.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const swipeDistance = touchEndX - touchStartX;
+    
+    if (Math.abs(swipeDistance) > minSwipeDistance) {
+      if (swipeDistance > 0) {
+        goPrev();
+      } else {
+        goNext();
+      }
+    }
+  }, { passive: true });
+  
+  // Keyboard navigation
+  modalState.galleryKeyHandler = (e) => {
+    if (!modalState.isOpen) return;
+    if (e.key === 'ArrowRight') goNext();
+    if (e.key === 'ArrowLeft') goPrev();
+  };
+  document.addEventListener('keydown', modalState.galleryKeyHandler);
 }
 
 /**
@@ -476,8 +625,12 @@ function unbindCloseHandlers() {
   if (modalState.boundKeyHandler) {
     document.removeEventListener('keydown', modalState.boundKeyHandler);
   }
+  if (modalState.galleryKeyHandler) {
+    document.removeEventListener('keydown', modalState.galleryKeyHandler);
+  }
   modalState.boundCloseHandler = null;
   modalState.boundKeyHandler = null;
+  modalState.galleryKeyHandler = null;
 }
 
 /**
