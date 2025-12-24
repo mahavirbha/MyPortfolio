@@ -15,6 +15,7 @@ import { initParticles } from './js/modules/particles.js';
 import { initPreloader } from './js/modules/preloader.js';
 import { initResumePreview } from './js/modules/resumePreview.js';
 import { initViewTransitions } from './js/modules/viewTransitions.js';
+import { initLikeButton } from './js/modules/likeButton.js';
 
 // Components
 import { initThreeScene } from './js/components/ThreeScene.js';
@@ -57,6 +58,7 @@ function init() {
   initSpeech();
   initContactForm();
   initResumePreview();
+  initLikeButton();
   
   // Initialize View Transitions (after content is rendered)
   initViewTransitions();
