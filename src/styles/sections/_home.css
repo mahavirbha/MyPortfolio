@@ -86,6 +86,13 @@
   display: inline-block;
 }
 
+/* Hide "I'm" text on mobile screens */
+@media screen and (max-width: 767px) {
+  .home_title .im-text {
+    display: none;
+  }
+}
+
 .home_profession {
   font-size: var(--small-font-size);
   color: var(--first-color-dark);

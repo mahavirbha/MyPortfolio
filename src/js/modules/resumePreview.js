@@ -3,6 +3,8 @@
  * Handles resume modal preview functionality
  */
 
+import { supportsViewTransitions } from './viewTransitions.js';
+
 let modal = null;
 let isOpen = false;
 
@@ -70,13 +72,22 @@ function openModal() {
     iframe.src = iframe.dataset.src;
   }
   
-  modal.classList.add('active');
-  document.body.classList.add('modal-open');
-  isOpen = true;
+  const showModal = () => {
+    modal.classList.add('active');
+    document.body.classList.add('modal-open');
+    isOpen = true;
 
-  // Focus trap - focus first interactive element
-  const firstFocusable = modal.querySelector('a, button');
-  firstFocusable?.focus();
+    // Focus trap - focus first interactive element
+    const firstFocusable = modal.querySelector('a, button');
+    firstFocusable?.focus();
+  };
+
+  // Use View Transition if supported
+  if (supportsViewTransitions()) {
+    document.startViewTransition(showModal);
+  } else {
+    showModal();
+  }
 }
 
 /**
@@ -85,13 +96,22 @@ function openModal() {
 function closeModal() {
   if (!modal) return;
   
-  modal.classList.remove('active');
-  document.body.classList.remove('modal-open');
-  isOpen = false;
+  const hideModal = () => {
+    modal.classList.remove('active');
+    document.body.classList.remove('modal-open');
+    isOpen = false;
 
-  // Return focus to trigger button
-  const openBtn = document.getElementById('resume-preview-btn');
-  openBtn?.focus();
+    // Return focus to trigger button
+    const openBtn = document.getElementById('resume-preview-btn');
+    openBtn?.focus();
+  };
+
+  // Use View Transition if supported
+  if (supportsViewTransitions()) {
+    document.startViewTransition(hideModal);
+  } else {
+    hideModal();
+  }
 }
 
 /**

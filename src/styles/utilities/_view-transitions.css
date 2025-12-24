@@ -1,0 +1,293 @@
+/**
+ * View Transitions
+ * Native-like smooth transitions for better UX
+ */
+
+/* ===== Enable View Transitions ===== */
+@view-transition {
+  navigation: auto;
+}
+
+/* ===== Root Transition Defaults ===== */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== Section Transitions ===== */
+.section {
+  view-transition-name: section-content;
+}
+
+::view-transition-old(section-content) {
+  animation: slide-out-left 0.3s ease-out forwards;
+}
+
+::view-transition-new(section-content) {
+  animation: slide-in-right 0.3s ease-out forwards;
+}
+
+/* ===== Hero Image Transition ===== */
+.home_img {
+  view-transition-name: hero-image;
+}
+
+::view-transition-old(hero-image),
+::view-transition-new(hero-image) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ===== Navigation Logo ===== */
+.nav_logo {
+  view-transition-name: nav-logo;
+}
+
+::view-transition-old(nav-logo),
+::view-transition-new(nav-logo) {
+  animation-duration: 0.3s;
+}
+
+/* ===== Project Cards ===== */
+.project_card {
+  view-transition-name: var(--card-transition-name);
+}
+
+::view-transition-old(project-card),
+::view-transition-new(project-card) {
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== Theme Toggle Transition ===== */
+[data-theme-toggle] i {
+  view-transition-name: theme-icon;
+}
+
+::view-transition-old(theme-icon) {
+  animation: rotate-fade-out 0.3s ease-out forwards;
+}
+
+::view-transition-new(theme-icon) {
+  animation: rotate-fade-in 0.3s ease-out forwards;
+}
+
+/* ===== Modal Transitions ===== */
+.resume-modal_content {
+  view-transition-name: modal-content;
+}
+
+::view-transition-old(modal-content) {
+  animation: scale-fade-out 0.25s ease-out forwards;
+}
+
+::view-transition-new(modal-content) {
+  animation: scale-fade-in 0.25s ease-out forwards;
+}
+
+/* ===== Section Title Transitions ===== */
+.section-title {
+  view-transition-name: section-title;
+}
+
+::view-transition-old(section-title) {
+  animation: fade-slide-up-out 0.3s ease-out forwards;
+}
+
+::view-transition-new(section-title) {
+  animation: fade-slide-up-in 0.3s ease-out forwards;
+}
+
+/* ===== Skill Progress Bars ===== */
+.skill_progress {
+  view-transition-name: var(--skill-transition-name);
+}
+
+/* ===== Back to Top Button ===== */
+.back-to-top {
+  view-transition-name: back-to-top;
+}
+
+::view-transition-old(back-to-top),
+::view-transition-new(back-to-top) {
+  animation-duration: 0.2s;
+}
+
+/* ===== Keyframe Animations ===== */
+@keyframes slide-out-left {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes rotate-fade-out {
+  from {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.8);
+  }
+}
+
+@keyframes rotate-fade-in {
+  from {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes scale-fade-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes scale-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-slide-up-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes fade-slide-up-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Morphing Card Effect ===== */
+@keyframes morph-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+    border-radius: var(--radius-md);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.05);
+    border-radius: 50%;
+  }
+}
+
+@keyframes morph-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+    border-radius: 50%;
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    border-radius: var(--radius-md);
+  }
+}
+
+/* ===== Crossfade for Images ===== */
+.about_img img,
+.home_img img {
+  view-transition-name: profile-image;
+}
+
+::view-transition-old(profile-image) {
+  animation: crossfade-out 0.4s ease-out forwards;
+}
+
+::view-transition-new(profile-image) {
+  animation: crossfade-in 0.4s ease-out forwards;
+}
+
+@keyframes crossfade-out {
+  from {
+    opacity: 1;
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+
+@keyframes crossfade-in {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* ===== Reduce Motion for Accessibility ===== */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+  
+  @view-transition {
+    navigation: none;
+  }
+}
+
+/* ===== Filter Button Active State ===== */
+.projects_filter-btn {
+  view-transition-name: var(--filter-transition-name);
+}
+
+.projects_filter-btn.active {
+  view-transition-name: active-filter;
+}
+
+::view-transition-old(active-filter),
+::view-transition-new(active-filter) {
+  animation-duration: 0.25s;
+}

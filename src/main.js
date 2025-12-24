@@ -14,6 +14,7 @@ import { initScrollEffects, initHomeAnimations } from './js/modules/scrollEffect
 import { initParticles } from './js/modules/particles.js';
 import { initPreloader } from './js/modules/preloader.js';
 import { initResumePreview } from './js/modules/resumePreview.js';
+import { initViewTransitions } from './js/modules/viewTransitions.js';
 
 // Components
 import { initThreeScene } from './js/components/ThreeScene.js';
@@ -56,6 +57,15 @@ function init() {
   initSpeech();
   initContactForm();
   initResumePreview();
+  
+  // Initialize View Transitions (after content is rendered)
+  initViewTransitions();
+  
+  // Set current year in footer
+  const yearElement = document.getElementById('current-year');
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
   
   console.log('🚀 Portfolio initialized successfully!');
 }

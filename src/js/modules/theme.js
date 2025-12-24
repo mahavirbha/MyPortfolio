@@ -3,6 +3,8 @@
  * Handles dark/light mode toggle with localStorage persistence
  */
 
+import { supportsViewTransitions } from './viewTransitions.js';
+
 const THEME_KEY = 'portfolio-theme';
 
 export function initTheme() {
@@ -17,8 +19,17 @@ export function initTheme() {
     toggle.addEventListener('click', () => {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      setTheme(newTheme);
-      localStorage.setItem(THEME_KEY, newTheme);
+      
+      // Use View Transition if supported
+      if (supportsViewTransitions()) {
+        document.startViewTransition(() => {
+          setTheme(newTheme);
+          localStorage.setItem(THEME_KEY, newTheme);
+        });
+      } else {
+        setTheme(newTheme);
+        localStorage.setItem(THEME_KEY, newTheme);
+      }
     });
   });
 

@@ -3,6 +3,8 @@
  * Handles mobile menu, scroll spy, and active link highlighting
  */
 
+import { supportsViewTransitions } from './viewTransitions.js';
+
 export function initNavigation() {
   const navMenu = document.getElementById('nav-menu');
   const navToggle = document.getElementById('nav-toggle');
@@ -12,21 +14,39 @@ export function initNavigation() {
   // Toggle mobile menu
   if (navToggle) {
     navToggle.addEventListener('click', () => {
-      navMenu?.classList.add('show-menu');
+      if (supportsViewTransitions()) {
+        document.startViewTransition(() => {
+          navMenu?.classList.add('show-menu');
+        });
+      } else {
+        navMenu?.classList.add('show-menu');
+      }
     });
   }
 
   // Close mobile menu
   if (navClose) {
     navClose.addEventListener('click', () => {
-      navMenu?.classList.remove('show-menu');
+      if (supportsViewTransitions()) {
+        document.startViewTransition(() => {
+          navMenu?.classList.remove('show-menu');
+        });
+      } else {
+        navMenu?.classList.remove('show-menu');
+      }
     });
   }
 
   // Close menu on link click
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
-      navMenu?.classList.remove('show-menu');
+      if (supportsViewTransitions()) {
+        document.startViewTransition(() => {
+          navMenu?.classList.remove('show-menu');
+        });
+      } else {
+        navMenu?.classList.remove('show-menu');
+      }
     });
   });
 
@@ -34,7 +54,13 @@ export function initNavigation() {
   document.addEventListener('click', (e) => {
     if (navMenu?.classList.contains('show-menu')) {
       if (!navMenu.contains(e.target) && !navToggle?.contains(e.target)) {
-        navMenu.classList.remove('show-menu');
+        if (supportsViewTransitions()) {
+          document.startViewTransition(() => {
+            navMenu.classList.remove('show-menu');
+          });
+        } else {
+          navMenu.classList.remove('show-menu');
+        }
       }
     }
   });

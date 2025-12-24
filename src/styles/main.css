@@ -29,3 +29,4 @@
 
 /* Utilities */
 @import "./utilities/_animations.css";
+@import "./utilities/_view-transitions.css";

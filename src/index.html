@@ -17,7 +17,7 @@
     <meta property="og:image" content="/MyPortfolio/assets/images/profile/mahavirbha_pic2.png" />
     <meta property="og:url" content="https://mahavirbha.github.io/MyPortfolio/" />
     
-    <!-- Twitter Card -->
+    <!-- X (Twitter) Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Mahavirsinh Chauhan | Senior Software Engineer" />
     <meta name="twitter:description" content="Senior Software Engineer building scalable web and mobile platforms with React, Next.js, and React Native." />
@@ -42,63 +42,196 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: #290f09;
+        background: linear-gradient(135deg, #290f09 0%, #1a0806 100%);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         z-index: 9999;
         transition: opacity 0.5s ease, visibility 0.5s ease;
+        overflow: hidden;
       }
       .preloader.hidden {
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
       }
-      .preloader_logo {
-        font-family: 'Bricolage Grotesque', sans-serif;
-        font-size: 3rem;
-        font-weight: 700;
-        color: #cc4b2c;
-        margin-bottom: 1rem;
-        animation: pulse 1.5s infinite;
-      }
-      .preloader_spinner {
-        width: 50px;
-        height: 50px;
-        border: 3px solid rgba(204, 75, 44, 0.2);
-        border-top-color: #cc4b2c;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
-      .preloader_progress {
-        width: 200px;
-        height: 4px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 9999px;
-        margin-top: 1rem;
+      
+      /* Animated Particles Background */
+      .preloader_particles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
       }
+      .preloader_particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(204, 75, 44, 0.3);
+        border-radius: 50%;
+        animation: float-particle 10s infinite linear;
+      }
+      .preloader_particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 8s; }
+      .preloader_particle:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 10s; }
+      .preloader_particle:nth-child(3) { left: 30%; animation-delay: 1s; animation-duration: 12s; }
+      .preloader_particle:nth-child(4) { left: 40%; animation-delay: 3s; animation-duration: 9s; }
+      .preloader_particle:nth-child(5) { left: 50%; animation-delay: 0.5s; animation-duration: 11s; }
+      .preloader_particle:nth-child(6) { left: 60%; animation-delay: 2.5s; animation-duration: 10s; }
+      .preloader_particle:nth-child(7) { left: 70%; animation-delay: 1.5s; animation-duration: 8s; }
+      .preloader_particle:nth-child(8) { left: 80%; animation-delay: 3.5s; animation-duration: 12s; }
+      .preloader_particle:nth-child(9) { left: 90%; animation-delay: 0.8s; animation-duration: 9s; }
+      
+      @keyframes float-particle {
+        0% { transform: translateY(100vh) scale(0); opacity: 0; }
+        10% { opacity: 0.6; }
+        90% { opacity: 0.6; }
+        100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+      }
+      
+      /* Main Loader Content */
+      .preloader_content {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      /* Code Brackets Loader */
+      .preloader_loader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        width: 100%;
+      }
+      
+      .preloader_bracket {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 5rem;
+        font-weight: 700;
+        color: #cc4b2c;
+        animation: bracket-pulse 2s ease-in-out infinite;
+        line-height: 1;
+        display: block;
+      }
+      
+      .preloader_bracket.left {
+        animation-delay: 0s;
+      }
+      
+      .preloader_bracket.right {
+        animation-delay: 1s;
+      }
+      
+      @keyframes bracket-pulse {
+        0%, 100% { transform: scale(1); opacity: 0.5; }
+        50% { transform: scale(1.1); opacity: 1; }
+      }
+      
+      /* Center Spinning Element */
+      .preloader_spinner-container {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+      }
+      
+      .preloader_spinner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 4px solid transparent;
+        border-top-color: #cc4b2c;
+        border-right-color: #cc4b2c;
+        border-radius: 50%;
+        animation: spin-loader 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+        box-sizing: border-box;
+      }
+      
+      .preloader_spinner:nth-child(2) {
+        border-top-color: rgba(204, 75, 44, 0.3);
+        border-right-color: rgba(204, 75, 44, 0.3);
+        animation-duration: 2.5s;
+        animation-direction: reverse;
+        width: 80%;
+        height: 80%;
+        top: 10%;
+        left: 10%;
+      }
+      
+      .preloader_code-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #fffafa;
+        animation: code-pulse 2s ease-in-out infinite;
+        white-space: nowrap;
+        z-index: 2;
+      }
+      
+      @keyframes spin-loader {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      @keyframes code-pulse {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+        50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+      }
+      
+      /* Loading Text */
+      .preloader_text {
+        color: #fffafa;
+        font-family: sans-serif;
+        font-size: 1.1rem;
+        font-weight: 500;
+        margin-top: 2.5rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        opacity: 0;
+        animation: fade-in-text 0.5s ease-in-out 0.5s forwards;
+        text-align: center;
+      }
+      
+      @keyframes fade-in-text {
+        to { opacity: 0.9; }
+      }
+      
+      /* Progress Bar */
+      .preloader_progress {
+        width: 240px;
+        max-width: 80%;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        margin-top: 1.5rem;
+        overflow: hidden;
+      }
+      
       .preloader_progress-bar {
         width: 0;
         height: 100%;
         background: #cc4b2c;
-        border-radius: 9999px;
+        border-radius: 4px;
         transition: width 0.3s ease;
+        box-shadow: 0 0 15px rgba(204, 75, 44, 0.8);
       }
-      .preloader_text {
-        color: #fffafa;
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: 0.813rem;
-        margin-top: 0.5rem;
-        opacity: 0.8;
-      }
-      @keyframes pulse {
-        0%, 100% { transform: scale(1); opacity: 1; }
-        50% { transform: scale(1.1); opacity: 0.8; }
-      }
-      @keyframes spin {
-        to { transform: rotate(360deg); }
+
+      /* Responsive Adjustments */
+      @media screen and (max-width: 768px) {
+        .preloader_bracket { font-size: 3rem; }
+        .preloader_spinner-container { width: 70px; height: 70px; }
+        .preloader_code-icon { font-size: 1.8rem; }
+        .preloader_loader { gap: 0.8rem; }
       }
       
       /* Hide body content until JS runs */
@@ -116,12 +249,41 @@
   <body>
     <!-- ========== Preloader ========== -->
     <div class="preloader">
-      <div class="preloader_logo">Welcome</div>
-      <div class="preloader_spinner"></div>
-      <div class="preloader_progress">
-        <div class="preloader_progress-bar"></div>
+      <div class="preloader_particles">
+        <div class="preloader_particle"></div>
+        <div class="preloader_particle"></div>
+        <div class="preloader_particle"></div>
+        <div class="preloader_particle"></div>
+        <div class="preloader_particle"></div>
+        <div class="preloader_particle"></div>
+        <div class="preloader_particle"></div>
+        <div class="preloader_particle"></div>
+        <div class="preloader_particle"></div>
       </div>
-      <p class="preloader_text">Loading...</p>
+      
+      <div class="preloader_content">
+        <div class="preloader_loader">
+          <span class="preloader_bracket left">&lt;</span>
+          <div class="preloader_spinner-container">
+            <div class="preloader_spinner"></div>
+            <div class="preloader_spinner"></div>
+            <div class="preloader_code-icon">/</div>
+          </div>
+          <span class="preloader_bracket right">&gt;</span>
+        </div>
+        
+        <p class="preloader_text">Loading Portfolio</p>
+        
+        <div class="preloader_progress">
+          <div class="preloader_progress-bar"></div>
+        </div>
+        
+        <div class="preloader_dots">
+          <div class="preloader_dot"></div>
+          <div class="preloader_dot"></div>
+          <div class="preloader_dot"></div>
+        </div>
+      </div>
     </div>
 
     <!-- ========== Header ========== -->
@@ -209,7 +371,7 @@
               <img src="assets/images/profile/mahavirbha_pic2.png" alt="Mahavirsinh Chauhan" />
             </div>
 
-            <h1 class="home_title">I'm <span class="name">Mahavirsinh Chauhan</span></h1>
+            <h1 class="home_title"><span class="im-text">I'm</span> <span class="name">Mahavirsinh Chauhan</span></h1>
             <span class="home_profession" id="typed-text">Senior Software Engineer</span>
 
             <div class="home_social">
@@ -228,7 +390,7 @@
               <a href="https://www.geeksforgeeks.org/profile/mahavirbha_?tab=activity" target="_blank" rel="noopener" class="home_social-link" title="GeeksforGeeks">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
               </a>
-              <a href="https://twitter.com/mahavirBHA1" target="_blank" rel="noopener" class="home_social-link" title="X (Twitter)">
+              <a href="https://twitter.com/mahavirBHA1" target="_blank" rel="noopener" class="home_social-link" title="X">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
               </a>
             </div>
@@ -485,38 +647,110 @@
     <!-- ========== Footer ========== -->
     <footer class="footer section">
       <div class="footer_container bd-grid">
-        <div class="footer_content">
-          <h2 class="footer_title">Mahavirsinh Chauhan</h2>
-          <p class="footer_description">Senior Software Engineer | React, Next.js & React Native</p>
-
-          <div class="footer_social">
-            <a href="https://www.linkedin.com/in/mahavirbha/" target="_blank" rel="noopener" class="footer_social-link">
-              <i class="bx bxl-linkedin"></i>
+        <!-- About Column -->
+        <div class="footer_column footer_about">
+          <h3 class="footer_column-title">Mahavirsinh Chauhan</h3>
+          <p class="footer_column-description">
+            Senior Software Engineer specializing in React, Next.js, and React Native. 
+            Building scalable web and mobile applications.
+          </p>
+          <div class="footer_contact-info">
+            <a href="mailto:mahavirsinhchauhan29@gmail.com" class="footer_contact-link">
+              <i class="bx bx-envelope"></i>
+              mahavirsinhchauhan29@gmail.com
             </a>
-            <a href="https://github.com/mahavirbha" target="_blank" rel="noopener" class="footer_social-link">
-              <i class="bx bxl-github"></i>
+            <a href="tel:+918320152376" class="footer_contact-link">
+              <i class="bx bx-phone"></i>
+              +91-8320152376
             </a>
-            <a href="https://www.facebook.com/mahavir.chauhan.505/" target="_blank" rel="noopener" class="footer_social-link">
-              <i class="bx bxl-facebook"></i>
-            </a>
-            <a href="https://www.instagram.com/mahavirbha_/" target="_blank" rel="noopener" class="footer_social-link">
-              <i class="bx bxl-instagram"></i>
-            </a>
-            <a href="https://twitter.com/mahavirBHA1" target="_blank" rel="noopener" class="footer_social-link">
-              <i class="bx bxl-twitter"></i>
-            </a>
+            <div class="footer_contact-link">
+              <i class="bx bx-map"></i>
+              Bangalore, India
+            </div>
           </div>
+        </div>
 
-          <div class="footer_links">
-            <a href="#home" class="footer_link">Home</a>
-            <a href="#about" class="footer_link">About</a>
-            <a href="#skills" class="footer_link">Skills</a>
-            <a href="#projects" class="footer_link">Projects</a>
-            <a href="#contact" class="footer_link">Contact</a>
-          </div>
+        <!-- Quick Links Column -->
+        <div class="footer_column">
+          <h3 class="footer_column-title">Quick Links</h3>
+          <ul class="footer_links-list">
+            <li><a href="#home" class="footer_link"><i class="bx bx-chevron-right"></i>Home</a></li>
+            <li><a href="#about" class="footer_link"><i class="bx bx-chevron-right"></i>About Me</a></li>
+            <li><a href="#education" class="footer_link"><i class="bx bx-chevron-right"></i>Education</a></li>
+            <li><a href="#skills" class="footer_link"><i class="bx bx-chevron-right"></i>Skills</a></li>
+            <li><a href="#projects" class="footer_link"><i class="bx bx-chevron-right"></i>Projects</a></li>
+            <li><a href="#contact" class="footer_link"><i class="bx bx-chevron-right"></i>Contact</a></li>
+          </ul>
+        </div>
 
+        <!-- Coding Profiles Column -->
+        <div class="footer_column">
+          <h3 class="footer_column-title">Coding Profiles</h3>
+          <ul class="footer_links-list">
+            <li>
+              <a href="https://leetcode.com/u/robowithsomeaix/" target="_blank" rel="noopener" class="footer_link">
+                <i class="bx bx-code-alt"></i>LeetCode
+              </a>
+            </li>
+            <li>
+              <a href="https://www.hackerrank.com/profile/mahavirbha_" target="_blank" rel="noopener" class="footer_link">
+                <i class="bx bx-code-alt"></i>HackerRank
+              </a>
+            </li>
+            <li>
+              <a href="https://www.geeksforgeeks.org/profile/mahavirbha_?tab=activity" target="_blank" rel="noopener" class="footer_link">
+                <i class="bx bx-code-alt"></i>GeeksforGeeks
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/mahavirbha" target="_blank" rel="noopener" class="footer_link">
+                <i class="bx bxl-github"></i>GitHub
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social & Resources Column -->
+        <div class="footer_column">
+          <h3 class="footer_column-title">Connect</h3>
+          <ul class="footer_links-list">
+            <li>
+              <a href="https://www.linkedin.com/in/mahavirbha/" target="_blank" rel="noopener" class="footer_link">
+                <i class="bx bxl-linkedin"></i>LinkedIn
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/mahavirBHA1" target="_blank" rel="noopener" class="footer_link">
+                <i class="bx bxl-twitter"></i>X (Twitter)
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/mahavirbha_/" target="_blank" rel="noopener" class="footer_link">
+                <i class="bx bxl-instagram"></i>Instagram
+              </a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/mahavir.chauhan.505/" target="_blank" rel="noopener" class="footer_link">
+                <i class="bx bxl-facebook"></i>Facebook
+              </a>
+            </li>
+            <li>
+              <a href="./Mahavirsinh_Chauhan.pdf" download class="footer_link">
+                <i class="bx bx-download"></i>Download Resume
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer_bottom">
+        <div class="footer_bottom-container bd-grid">
           <p class="footer_copy">
-            &copy; 2024 Mahavirsinh Chauhan. Made with <i class="bx bx-heart" style="color: var(--first-color);"></i>
+            &copy; <span id="current-year"></span> Mahavirsinh Chauhan. All rights reserved.
+          </p>
+          <p class="footer_made-with">
+            Made with <i class="bx bx-heart"></i> using JavaScript, Three.js & GSAP
           </p>
         </div>
       </div>
