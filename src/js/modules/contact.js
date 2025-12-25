@@ -32,10 +32,8 @@ function handleSubmit(e) {
 
   // Format message for WhatsApp
   const whatsappMessage = encodeURIComponent(
-    `*New Contact Form Submission*\n\n` +
-    `*Name:* ${name}\n` +
-    `*Email:* ${email}\n\n` +
-    `*Message:*\n${message}`
+    `${message}\n\n` +
+    `From: ${name} (${email})`
   );
 
   // WhatsApp number

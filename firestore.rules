@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Portfolio like count - anyone can read, authenticated users can increment
+    match /portfolio/{docId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Likes collection - authenticated users can read/write their own like
+    match /likes/{likeId} {
+      allow read: if true;
+      allow create: if request.auth != null && request.auth.uid == likeId;
+      allow update, delete: if request.auth != null && request.auth.uid == likeId;
+    }
+    
+    // Notifications - only Cloud Functions can write (admin SDK bypasses rules)
+    match /notifications/{notificationId} {
+      allow read: if false;
+      allow write: if false;
+    }
+  }
+}

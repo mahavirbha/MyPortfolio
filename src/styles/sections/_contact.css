@@ -99,6 +99,22 @@
   box-shadow: 0 0 0 4px rgba(204, 75, 44, 0.1);
 }
 
+/* Autofilled state from like button */
+.contact_form-input.autofilled {
+  border-color: #00b894;
+  background: linear-gradient(135deg, rgba(0, 184, 148, 0.05), rgba(0, 184, 148, 0.1));
+  animation: autofill-glow 2s ease-out;
+}
+
+@keyframes autofill-glow {
+  0% {
+    box-shadow: 0 0 0 4px rgba(0, 184, 148, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(0, 184, 148, 0);
+  }
+}
+
 .contact_form-input::placeholder {
   color: var(--text-color);
   opacity: 0.5;

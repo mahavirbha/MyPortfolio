@@ -28,6 +28,9 @@
     <!-- BoxIcons -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
+    <!-- EmailJS SDK (v4) -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
     <title>Mahavirsinh Chauhan | Senior Software Engineer</title>
 
     <!-- Critical CSS - Prevents FOUC (Flash of Unstyled Content) -->
@@ -298,9 +301,17 @@
           Mahavirsinh
         </a>
 
-        <button class="header_theme-toggle" data-theme-toggle>
-          <i class="bx bx-moon"></i>
-        </button>
+        <div class="header_actions">
+          <button class="header_like-btn js-like-btn" id="header-like-btn" aria-label="Like this portfolio">
+            <i class="bx bx-heart"></i>
+            <i class="bx bxs-heart"></i>
+            <span class="header_like-count js-like-count" id="header-like-count">...</span>
+          </button>
+          
+          <button class="header_theme-toggle" data-theme-toggle>
+            <i class="bx bx-moon"></i>
+          </button>
+        </div>
 
         <div class="nav_menu" id="nav-menu">
           <div class="nav_close" id="nav-close">
@@ -345,6 +356,16 @@
               </a>
             </li>
           </ul>
+
+          <!-- Sidebar Like Button (Desktop) -->
+          <div class="sidebar_like-wrapper">
+            <button class="sidebar_like-btn js-like-btn" aria-label="Like this portfolio">
+              <i class="bx bx-heart"></i>
+              <i class="bx bxs-heart"></i>
+              <span class="sidebar_like-count js-like-count">0</span>
+            </button>
+            <span class="sidebar_like-label">Likes Portfolio</span>
+          </div>
 
           <div class="nav_theme-toggle" data-theme-toggle>
             <i class="bx bx-moon"></i>
@@ -752,12 +773,12 @@
           
           <!-- Like Button -->
           <div class="like-button-wrapper">
-            <button class="like-button" id="like-button" aria-label="Like this portfolio">
+            <button class="like-button js-like-btn" id="like-button" aria-label="Like this portfolio">
               <i class="bx bx-heart like-button_icon"></i>
               <i class="bx bxs-heart like-button_icon-filled"></i>
-              <span class="like-button_count" id="like-count">0</span>
+              <span class="like-button_count js-like-count" id="like-count">...</span>
             </button>
-            <span class="like-button_label">Liked by visitors</span>
+            <span class="like-button_label">Like with Google Sign-In</span>
           </div>
           
           <p class="footer_made-with">
