@@ -4,7 +4,7 @@
  */
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, query, collection, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, query, collection, getDocs, getCountFromServer } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, browserLocalPersistence, setPersistence } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { firebaseConfig } from "./firebaseConfig.js";
 
@@ -13,8 +13,6 @@ const EMAILJS_PUBLIC_KEY = '2zd_AmlssdRBW_srV'; // Replace with your public key
 const EMAILJS_SERVICE_ID = 'service_udv0509'; // Service ID you create in EmailJS
 const EMAILJS_TEMPLATE_ID = 'template_puwirgh'; // Template ID you create
 
-const COLLECTION = 'portfolio';
-const DOC_ID = 'likeCount';
 const LIKES_COLLECTION = 'likes';
 
 // Local state
@@ -60,6 +58,9 @@ export async function initLikeButton() {
   
   if (likeButtons.length === 0) return;
 
+  // Show loading state initially
+  likeButtons.forEach(btn => btn.classList.add('loading'));
+
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   db = getFirestore(app);
@@ -71,23 +72,35 @@ export async function initLikeButton() {
   // Initialize EmailJS and wait for it to load
   await initEmailJS();
 
-  // Listen for auth state changes - check Firestore for like status
-  onAuthStateChanged(auth, (user) => {
-    if (user && user.email) {
-      checkUserLikeStatusByEmail(user.email);
-    }
-  });
-
-  // Also check immediately if user is already logged in
-  if (auth.currentUser && auth.currentUser.email) {
-    await checkUserLikeStatusByEmail(auth.currentUser.email);
-  }
-
   // Set initial placeholder for all like counts
   document.querySelectorAll('.js-like-count').forEach(el => el.textContent = '...');
 
   // Fetch current count
   await fetchLikeCount();
+
+  // Wait for auth state to be ready and check like status
+  await new Promise((resolve) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user && user.email) {
+        const hasLiked = await checkUserLikeStatusByEmail(user.email);
+        if (hasLiked) {
+          // Ensure buttons show liked state
+          likeButtons.forEach(btn => {
+            btn.classList.remove('loading');
+            btn.classList.add('liked');
+          });
+        } else {
+          // Remove loading state for unliked buttons
+          likeButtons.forEach(btn => btn.classList.remove('loading'));
+        }
+      } else {
+        // No user signed in, remove loading state
+        likeButtons.forEach(btn => btn.classList.remove('loading'));
+      }
+      unsubscribe();
+      resolve();
+    });
+  });
 
   // Handle click on all buttons
   likeButtons.forEach(btn => {
@@ -117,28 +130,24 @@ async function checkUserLikeStatusByEmail(email) {
 }
 
 /**
- * Fetch the current like count from storage
+ * Fetch the current like count from likes collection
  */
 async function fetchLikeCount() {
   const countElements = document.querySelectorAll('.js-like-count');
   
   try {
-    const docRef = doc(db, COLLECTION, DOC_ID);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      localCount = docSnap.data().count || 0;
-      countElements.forEach(el => {
-        if (el.id === 'like-count') {
-          animateCount(el, localCount);
-        } else {
-          el.textContent = formatCount(localCount);
-        }
-      });
-    } else {
-      await setDoc(docRef, { count: 0 });
-      localCount = 0;
-      countElements.forEach(el => el.textContent = '0');
-    }
+    // Count documents in likes collection
+    const likesCollection = collection(db, LIKES_COLLECTION);
+    const snapshot = await getCountFromServer(likesCollection);
+    localCount = snapshot.data().count;
+    
+    countElements.forEach(el => {
+      if (el.id === 'like-count') {
+        animateCount(el, localCount);
+      } else {
+        el.textContent = formatCount(localCount);
+      }
+    });
   } catch (error) {
     console.warn('Could not fetch like count:', error);
     countElements.forEach(el => el.textContent = '0');
@@ -223,12 +232,10 @@ async function handleLikeClick(e) {
     createHeartBurst(targetButton);
 
     // Store like in Firestore (using email as key to prevent duplicate likes)
-    await Promise.all([
-      updateDoc(doc(db, COLLECTION, DOC_ID), { count: increment(1) }).catch(async () => {
-        await setDoc(doc(db, COLLECTION, DOC_ID), { count: 1 });
-      }),
-      setDoc(doc(db, LIKES_COLLECTION, emailKey), userData)
-    ]);
+    await setDoc(doc(db, LIKES_COLLECTION, emailKey), userData);
+    
+    // Refresh count after storing
+    await fetchLikeCount();
 
     // Send thank you email to user
     await sendEmailNotification(userData);
